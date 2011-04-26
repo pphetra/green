@@ -1,0 +1,8 @@
+CACHE MANIFEST
+/index.html
+/media/sencha/sencha-touch-debug.js
+/media/sencha/resources/css/sencha-touch.css
+/media/main.js
+{% for f in files %}
+/media/images/{{f}}
+{% endfor %}

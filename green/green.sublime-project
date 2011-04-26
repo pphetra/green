@@ -1,0 +1,318 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fu",
+				"function"
+			],
+			[
+				"tr",
+				"transaction"
+			],
+			[
+				"ex",
+				"executeSql"
+			],
+			[
+				"err",
+				"errorHandler"
+			],
+			[
+				"fi",
+				"fileWriter"
+			],
+			[
+				"re",
+				"response"
+			],
+			[
+				"key",
+				"keyLogger"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"cont",
+				"content_type"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"mod",
+				"models"
+			],
+			[
+				"url",
+				"urlpatterns"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/pphetra/projects/opendream/green_ext/background.html",
+			"settings":
+			{
+				"buffer_size": 2176,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/pphetra/projects/opendream/green_ext/main.html",
+			"settings":
+			{
+				"buffer_size": 3994,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/pphetra/projects/opendream/green_ext/manifest.json",
+			"settings":
+			{
+				"buffer_size": 309,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"file_history":
+	[
+		"/Users/pphetra/projects/opendream/green_ext/pixastic.jquery.js",
+		"/Users/pphetra/projects/opendream/hercules/lion/client/server.py",
+		"/Users/pphetra/projects/opendream/green2/server.py",
+		"/Users/pphetra/projects/opendream/green2/static/index.html",
+		"/Users/pphetra/projects/opendream/green/settings.py",
+		"/Users/pphetra/projects/opendream/green/main/models.py",
+		"/Users/pphetra/projects/opendream/green/main/views.py",
+		"/Users/pphetra/projects/opendream/green/templates/manifest",
+		"/Users/pphetra/projects/opendream/green/templates/index.html",
+		"/Users/pphetra/projects/opendream/green/urls.py",
+		"/Users/pphetra/projects/opendream/green2/__init__.py",
+		"/Users/pphetra/Library/Application Support/Sublime Text 2/Packages/User/Base File.sublime-settings",
+		"/Users/pphetra/projects/opendream/green/media/index.html",
+		"/Users/pphetra/projects/opendream/green/media/sencha/sencha-touch-debug-w-comments.js",
+		"/Users/pphetra/projects/opendream/green/main/admin.py",
+		"/Users/pphetra/projects/opendream/green_ext/manifest.json",
+		"/Users/pphetra/projects/opendream/green_ext/main.html",
+		"/Users/pphetra/projects/opendream/green/media/main.js",
+		"/Users/pphetra/projects/opendream/green_ext/icon.png",
+		"/Users/pphetra/projects/opendream/green/media/x.txt"
+	],
+	"find_in_files":
+	{
+		"include_history":
+		[
+			""
+		],
+		"location_history":
+		[
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"canvas",
+			"data",
+			"save",
+			"onRequest",
+			"replace",
+			"url",
+			"'",
+			"keylogger",
+			"overlay",
+			"admin",
+			"keypress",
+			"keyup",
+			"keypress",
+			"template",
+			"default_flag"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	{
+		"mount_points":
+		[
+			"/Users/pphetra/projects/opendream/green",
+			"/Users/pphetra/projects/opendream/green_ext",
+			"/Users/pphetra/projects/opendream/green2",
+			"/Users/pphetra/projects/opendream/hercules/lion/client"
+		]
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/pphetra/projects/opendream/green_ext/background.html",
+					"settings":
+					{
+						"buffer_size": 2176,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								921,
+								472
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/pphetra/projects/opendream/green_ext/main.html",
+					"settings":
+					{
+						"buffer_size": 3994,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								829,
+								829
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/pphetra/projects/opendream/green_ext/manifest.json",
+					"settings":
+					{
+						"buffer_size": 309,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								309,
+								309
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0,
+			1
+		],
+		"rows":
+		[
+			0,
+			1
+		]
+	},
+	"menu_visible": true,
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0,
+		"selected_items":
+		[
+			[
+				"view",
+				"green/main/views.py"
+			],
+			[
+				"settin",
+				"green/settings.py"
+			],
+			[
+				"index",
+				"green/media/index.html"
+			],
+			[
+				"settings",
+				"settings.py"
+			]
+		],
+		"width": 0
+	},
+	"select_project":
+	{
+		"height": 500,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/pphetra/Desktop/billing"
+			]
+		],
+		"width": 380
+	},
+	"show_minimap": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150,
+	"status_bar_visible": true
+}

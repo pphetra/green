@@ -1,0 +1,162 @@
+<html>
+<head>
+  <title>Hi</title>
+  	 <!-- Ext Touch CSS -->
+    <link rel="stylesheet" type="text/css"
+	    href="/sencha/resources/css/sencha-touch.css"/>
+
+	 <!-- Ext Touch JS -->
+	<script type="text/javascript"
+	    src="/sencha/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript"
+        src="/pixastic.core.js"></script>
+
+	<script>
+
+    
+    function loadImg(name, src) {
+    var img = new Image();
+    img.onload = function() {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            context.drawImage(img, 0, 0);
+            var data = canvas.toDataURL();
+
+            console.log(data);
+
+    };
+    img.src = src;
+}
+
+	new Ext.Application({
+    name: 'app',
+    launch: function() {
+
+    	win = new Ext.Panel({
+            floating: true,
+            modal: true,
+            centered: true,
+            hideOnMaskTap: false,
+            height: 190,
+            width: Ext.is.Phone ? 320 :480,
+            tpl: new Ext.XTemplate(
+            	'<ul><tpl for="rows">',
+            	'<li>{symbol} Product Name: {product__name}</li>',
+            	'</tpl></ul>'
+            )
+        });
+
+    	viewport = new Ext.Panel({
+    		fullscreen: true,
+    		items: [
+                {   xtype: 'button',
+                    text: 'load image',
+                    handler: function() {
+                        //chrome.extension.getBackgroundPage().loadImg('x.png', 'http://localhost:8000/media/images/x.png', chrome.extension.getExtensionTabs()[0])
+                        loadImg('x.png', 'http://localhost:8000/media/images/x.png');
+                    }
+                },
+                {
+                    xtype: 'button',
+                    text: 'show image',
+                    handler: function() {
+                        chrome.extension.getBackgroundPage().readDB('x.png', function(data) {
+                            document.getElementById('sample').src = data;
+                        })
+                    }
+                },
+    			{
+    				xtype: 'button',
+    				text: 'save file',
+    				handler: function() {
+    					window.requestFileSystem( PERSISTENT, 5242880 /* ~5MB */, function(fs) {
+    						console.log('hi');
+    					    fsys = fs;
+    					    root = fsys.root;
+    					    console.log(fsys, root);
+    					}, function() {
+    						console.log(arguments);
+    					});
+    				}
+    			},{
+    				xtype: 'panel',
+    				width: 100,
+    				height: 100,
+    				html: '<img id="sample" src="http://localhost:8000/media/sencha/resources/themes/images/default/tip.png"/>'
+    			},{
+    				xtype: 'panel',
+    				width: 200,
+    				height: 200,
+    				html: '<canvas id="canvas"></canvas>'
+    			}
+    		]
+    	});
+
+    	app.keyLogger.init();
+
+        chrome.extension.getBackgroundPage().init();
+        app.loadImage = function(data) {
+            console.log('main', data);
+        };
+    }
+});
+
+
+
+app.keyLogger = {
+	pending: [],
+	init: function() {
+		document.addEventListener('keypress', function(e) {
+    		var s = String.fromCharCode(e.charCode);
+    		app.keyLogger.add(s);
+    	});
+	},
+	add: function(code) {
+		this.pending.push(code);
+		if (! ('task' in this)) {
+			this.task = new Ext.util.DelayedTask(function() {
+
+				var code = this.pending.join('');
+				Ext.dispatch({
+		            controller: app.controllers.product,
+		            action: 'load',
+		            code: code
+		        });
+        		this.pending.length = 0;
+			}, this);
+		}
+		console.log(this.pending);
+		this.task.delay(500);
+	}
+}
+
+function process(code) {
+
+
+}
+
+app.controllers.product = new Ext.Controller({
+	load: function(options) {
+		Ext.Ajax.request({
+		url: 'http://localhost:8000/product',
+		params: {
+			code: options.code
+		},
+		success: function(response, opts) {
+			var obj = Ext.decode(response.responseText);
+			win.show();
+			win.update(obj);
+			Ext.defer(function() {
+				win.hide();
+			}, 2000)
+		}
+	})
+	}
+});
+</script>
+</head>
+<body>
+Hello world
+</body>
+</html>
