@@ -1,0 +1,1486 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+--
+-- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: postgres
+--
+
+CREATE PROCEDURAL LANGUAGE plpgsql;
+
+
+ALTER PROCEDURAL LANGUAGE plpgsql OWNER TO postgres;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO green;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO green;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO green;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO green;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_message; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE auth_message (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    message text NOT NULL
+);
+
+
+ALTER TABLE public.auth_message OWNER TO green;
+
+--
+-- Name: auth_message_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE auth_message_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_message_id_seq OWNER TO green;
+
+--
+-- Name: auth_message_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE auth_message_id_seq OWNED BY auth_message.id;
+
+
+--
+-- Name: auth_message_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('auth_message_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE auth_permission (
+    id integer NOT NULL,
+    name character varying(50) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO green;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO green;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('auth_permission_id_seq', 39, true);
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE auth_user (
+    id integer NOT NULL,
+    username character varying(30) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(30) NOT NULL,
+    email character varying(75) NOT NULL,
+    password character varying(128) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    is_superuser boolean NOT NULL,
+    last_login timestamp with time zone NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO green;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO green;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO green;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE auth_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO green;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('auth_user_id_seq', 1, true);
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO green;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO green;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    user_id integer NOT NULL,
+    content_type_id integer,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO green;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE django_admin_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO green;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('django_admin_log_id_seq', 60, true);
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE django_content_type (
+    id integer NOT NULL,
+    name character varying(100) NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO green;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE django_content_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO green;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('django_content_type_id_seq', 13, true);
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO green;
+
+--
+-- Name: django_site; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE django_site (
+    id integer NOT NULL,
+    domain character varying(100) NOT NULL,
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.django_site OWNER TO green;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE django_site_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_site_id_seq OWNER TO green;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE django_site_id_seq OWNED BY django_site.id;
+
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('django_site_id_seq', 4, true);
+
+
+--
+-- Name: main_category; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE main_category (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.main_category OWNER TO green;
+
+--
+-- Name: main_category_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE main_category_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.main_category_id_seq OWNER TO green;
+
+--
+-- Name: main_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE main_category_id_seq OWNED BY main_category.id;
+
+
+--
+-- Name: main_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('main_category_id_seq', 5, true);
+
+
+--
+-- Name: main_code; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE main_code (
+    id integer NOT NULL,
+    symbol character varying(25) NOT NULL,
+    product_id integer NOT NULL
+);
+
+
+ALTER TABLE public.main_code OWNER TO green;
+
+--
+-- Name: main_code_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE main_code_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.main_code_id_seq OWNER TO green;
+
+--
+-- Name: main_code_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE main_code_id_seq OWNED BY main_code.id;
+
+
+--
+-- Name: main_code_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('main_code_id_seq', 17, true);
+
+
+--
+-- Name: main_producer; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE main_producer (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    description text NOT NULL,
+    image character varying(100)
+);
+
+
+ALTER TABLE public.main_producer OWNER TO green;
+
+--
+-- Name: main_producer_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE main_producer_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.main_producer_id_seq OWNER TO green;
+
+--
+-- Name: main_producer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE main_producer_id_seq OWNED BY main_producer.id;
+
+
+--
+-- Name: main_producer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('main_producer_id_seq', 3, true);
+
+
+--
+-- Name: main_product; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE main_product (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    description text NOT NULL,
+    image character varying(100),
+    category_id integer NOT NULL,
+    standard_id integer NOT NULL,
+    producer_id integer NOT NULL
+);
+
+
+ALTER TABLE public.main_product OWNER TO green;
+
+--
+-- Name: main_product_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE main_product_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.main_product_id_seq OWNER TO green;
+
+--
+-- Name: main_product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE main_product_id_seq OWNED BY main_product.id;
+
+
+--
+-- Name: main_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('main_product_id_seq', 17, true);
+
+
+--
+-- Name: main_standard; Type: TABLE; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE TABLE main_standard (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.main_standard OWNER TO green;
+
+--
+-- Name: main_standard_id_seq; Type: SEQUENCE; Schema: public; Owner: green
+--
+
+CREATE SEQUENCE main_standard_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.main_standard_id_seq OWNER TO green;
+
+--
+-- Name: main_standard_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: green
+--
+
+ALTER SEQUENCE main_standard_id_seq OWNED BY main_standard.id;
+
+
+--
+-- Name: main_standard_id_seq; Type: SEQUENCE SET; Schema: public; Owner: green
+--
+
+SELECT pg_catalog.setval('main_standard_id_seq', 3, true);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE auth_message ALTER COLUMN id SET DEFAULT nextval('auth_message_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE django_content_type ALTER COLUMN id SET DEFAULT nextval('django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE django_site ALTER COLUMN id SET DEFAULT nextval('django_site_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE main_category ALTER COLUMN id SET DEFAULT nextval('main_category_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE main_code ALTER COLUMN id SET DEFAULT nextval('main_code_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE main_producer ALTER COLUMN id SET DEFAULT nextval('main_producer_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE main_product ALTER COLUMN id SET DEFAULT nextval('main_product_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: green
+--
+
+ALTER TABLE main_standard ALTER COLUMN id SET DEFAULT nextval('main_standard_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_message; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY auth_message (id, user_id, message) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add permission	1	add_permission
+2	Can change permission	1	change_permission
+3	Can delete permission	1	delete_permission
+4	Can add group	2	add_group
+5	Can change group	2	change_group
+6	Can delete group	2	delete_group
+7	Can add user	3	add_user
+8	Can change user	3	change_user
+9	Can delete user	3	delete_user
+10	Can add message	4	add_message
+11	Can change message	4	change_message
+12	Can delete message	4	delete_message
+13	Can add content type	5	add_contenttype
+14	Can change content type	5	change_contenttype
+15	Can delete content type	5	delete_contenttype
+16	Can add session	6	add_session
+17	Can change session	6	change_session
+18	Can delete session	6	delete_session
+19	Can add site	7	add_site
+20	Can change site	7	change_site
+21	Can delete site	7	delete_site
+22	Can add log entry	8	add_logentry
+23	Can change log entry	8	change_logentry
+24	Can delete log entry	8	delete_logentry
+25	Can add producer	9	add_producer
+26	Can change producer	9	change_producer
+27	Can delete producer	9	delete_producer
+28	Can add standard	10	add_standard
+29	Can change standard	10	change_standard
+30	Can delete standard	10	delete_standard
+31	Can add category	11	add_category
+32	Can change category	11	change_category
+33	Can delete category	11	delete_category
+34	Can add product	12	add_product
+35	Can change product	12	change_product
+36	Can delete product	12	delete_product
+37	Can add code	13	add_code
+38	Can change code	13	change_code
+39	Can delete code	13	delete_code
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY auth_user (id, username, first_name, last_name, email, password, is_staff, is_active, is_superuser, last_login, date_joined) FROM stdin;
+1	pphetra			pphetra@gmail.com	sha1$535ff$f289f19c90795c3e766af61fa84b4f19ea19217a	t	t	t	2011-04-26 15:04:47.850579+07	2011-04-26 13:03:38.011625+07
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, object_repr, action_flag, change_message) FROM stdin;
+1	2011-04-26 13:12:11.659929+07	1	10	1	มาตรฐาน 1	1	
+2	2011-04-26 13:12:27.227723+07	1	10	2	มาตรฐาน 2	1	
+3	2011-04-26 13:12:32.530229+07	1	10	3	มาตรฐาน 3	1	
+4	2011-04-26 13:14:35.223886+07	1	7	2	localhost	1	
+5	2011-04-26 13:15:25.330431+07	1	7	3	128.1.1.197	1	
+6	2011-04-26 13:15:49.001674+07	1	7	4	127.0.0.1	1	
+7	2011-04-26 13:24:07.075688+07	1	11	1	ชุดชงดื่มสุขภาพ	1	
+8	2011-04-26 13:24:18.68644+07	1	11	2	ชุดขนมสุขภาพ	1	
+9	2011-04-26 13:24:30.372457+07	1	11	3	ชุดมื้อสุขภาพ	1	
+10	2011-04-26 13:24:45.075621+07	1	11	4	ชุดส่วนผสมเพื่อสุขภาพ	1	
+11	2011-04-26 13:37:00.824919+07	1	9	1	ซองเดอร์	1	
+12	2011-04-26 13:45:57.770671+07	1	12	1	เครื่องดื่มธัญญาหารสำเร็จรูป ผสมงาดำหวานน้อย (แพ็ค)	1	
+13	2011-04-26 13:47:53.980425+07	1	12	2	เครื่องดื่มธัญญาหารสำเร็จรูป ผสมงาดำ รสจืด (แพ็ค)	1	
+14	2011-04-26 13:49:07.054791+07	1	13	1	101	1	
+15	2011-04-26 13:49:13.570798+07	1	13	2	102	1	
+16	2011-04-26 14:05:37.447198+07	1	12	3	เครื่องดื่มธัญญาหารสำเร็จรูป รสโกโก้ (แพ็ค)	1	
+17	2011-04-26 14:06:21.895993+07	1	13	3	103	1	
+18	2011-04-26 14:14:36.152606+07	1	12	4	"เกรนน่า" งาแท่งผสมธัญพืช 7 ชนิด (แพ็ค)	1	
+19	2011-04-26 14:14:46.294528+07	1	12	4	"เกรนน่า" งาแท่งผสมธัญพืช 7 ชนิด (แพ็ค)	2	Changed image.
+20	2011-04-26 14:16:19.723223+07	1	12	5	"เกรนนี่" ธัญพืชแท่งผสมผลไม้รวม 15 ชนิด (แพ็ค)	1	
+21	2011-04-26 14:16:56.61356+07	1	12	5	"เกรนนี่" ธัญพืชแท่งผสมผลไม้รวม 15 ชนิด (แพ็ค)	2	Changed image.
+22	2011-04-26 14:17:11.06466+07	1	12	5	เกรนนี่ ธัญพืชแท่งผสมผลไม้รวม 15 ชนิด (แพ็ค)	2	Changed name.
+23	2011-04-26 14:17:18.165525+07	1	12	4	เกรนน่า งาแท่งผสมธัญพืช 7 ชนิด (แพ็ค)	2	Changed name.
+24	2011-04-26 14:17:46.115303+07	1	13	4	202	1	
+25	2011-04-26 14:18:08.786346+07	1	13	4	201	2	Changed symbol.
+26	2011-04-26 14:18:21.310466+07	1	13	5	205	1	
+27	2011-04-26 14:19:28.527796+07	1	12	6	โจ๊กข้าวกล้องหอมมะลิแดง ผสมสาหร่าย (แพ็ค)	1	
+28	2011-04-26 14:20:34.80175+07	1	12	7	โจ๊กข้าวกล้องหอมมะลิแดง ผสมผัก (แพ็ค)	1	
+29	2011-04-26 14:21:02.140252+07	1	12	6	โจ๊กข้าวกล้องหอมมะลิแดง ผสมสาหร่าย (แพ็ค)	2	Changed image.
+30	2011-04-26 14:21:09.124837+07	1	12	7	โจ๊กข้าวกล้องหอมมะลิแดง ผสมผัก (แพ็ค)	2	Changed image.
+31	2011-04-26 14:21:18.64869+07	1	13	6	301	1	
+32	2011-04-26 14:21:24.622884+07	1	13	7	302	1	
+33	2011-04-26 14:22:44.933935+07	1	12	8	งาดำเม็ดไร้สารพิษ 100 กรัม (แพ็ค)	1	
+34	2011-04-26 14:23:28.900812+07	1	12	9	งาดำบดไร้สารพิษ 100 กรัม (แพ็ค)	1	
+35	2011-04-26 14:24:03.421572+07	1	12	8	งาดำเม็ดไร้สารพิษ 100 กรัม (แพ็ค)	2	Changed image.
+36	2011-04-26 14:24:09.748435+07	1	12	9	งาดำบดไร้สารพิษ 100 กรัม (แพ็ค)	2	Changed image.
+37	2011-04-26 14:24:19.289346+07	1	13	8	401	1	
+38	2011-04-26 14:24:24.022618+07	1	13	9	402	1	
+39	2011-04-26 14:36:53.379277+07	1	9	2	ทรอปปิก้าไลฟ์ 	1	
+40	2011-04-26 14:37:18.360488+07	1	9	2	ทรอปปิก้าไลฟ์ 	2	Changed image.
+41	2011-04-26 14:41:33.351294+07	1	11	5	สินค้าอุปโภค	1	
+42	2011-04-26 14:42:48.375926+07	1	12	10	ลูกประคบมะพร้าว	1	
+43	2011-04-26 14:44:02.39582+07	1	12	11	ลูกประคบมาตรฐานโบราณ	1	
+44	2011-04-26 14:45:09.527262+07	1	12	12	ลูกประคบงาดำ	1	
+45	2011-04-26 14:46:17.949767+07	1	12	13	ถุงแช่อาบน้ำ	1	
+46	2011-04-26 14:46:35.637759+07	1	13	10	a1	1	
+47	2011-04-26 14:46:42.446146+07	1	13	11	a2	1	
+48	2011-04-26 14:46:47.449991+07	1	13	12	a3	1	
+49	2011-04-26 14:46:51.944587+07	1	13	13	a4	1	
+50	2011-04-26 14:51:36.116768+07	1	9	3	lemon farm	1	
+51	2011-04-26 14:55:19.215203+07	1	12	14	น้ำมันงาดำบริสุทธิ์  (Black Sesame Oil)	1	
+52	2011-04-26 14:56:14.079397+07	1	12	15	น้ำมันมะพร้าวบริสุทธิ์ (Virgin Coconut Oil)	1	
+53	2011-04-26 15:00:03.367498+07	1	12	16	ชาใบเตย	1	
+54	2011-04-26 15:04:22.36684+07	1	12	17	น้ำมันมะพร้าวออแกนิก	1	
+55	2011-04-26 15:05:09.205063+07	1	13	14	a5	1	
+56	2011-04-26 15:05:33.604343+07	1	12	17	น้ำมันมะพร้าวบริสุทธิ์ (Virgin Coconut Oil)	2	Changed name.
+57	2011-04-26 15:06:02.656846+07	1	13	15	tea1	1	
+58	2011-04-26 15:07:16.422059+07	1	13	16	a6	1	
+59	2011-04-26 15:08:27.388351+07	1	12	17	น้ำมันมะพร้าวออแกนิก	2	Changed name.
+60	2011-04-26 15:08:40.611834+07	1	13	17	a7	1	
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY django_content_type (id, name, app_label, model) FROM stdin;
+1	permission	auth	permission
+2	group	auth	group
+3	user	auth	user
+4	message	auth	message
+5	content type	contenttypes	contenttype
+6	session	sessions	session
+7	site	sites	site
+8	log entry	admin	logentry
+9	producer	main	producer
+10	standard	main	standard
+11	category	main	category
+12	product	main	product
+13	code	main	code
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY django_session (session_key, session_data, expire_date) FROM stdin;
+b79da3eaad30b8dbd7abc845b8059759	Yzg0OTRlNDY5M2NhNWRlZjljOTVhODFmZTMwOGE0ZGQyYmY4YmFkYjqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLAXUu\n	2011-05-10 13:04:50.753226+07
+927c85b50d875e25700d3a6415d186b8	NmQxM2Q4ZTQwOWUxMjY2OThmNTAxNTYyNWVkNTZhY2IwYmMxMzI5ZDqAAn1xAVUKdGVzdGNvb2tp\nZXECVQZ3b3JrZWRxA3Mu\n	2011-05-10 13:17:39.214129+07
+8f54fcf1550c578d7c3d189dc0f09b5f	Yzg0OTRlNDY5M2NhNWRlZjljOTVhODFmZTMwOGE0ZGQyYmY4YmFkYjqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLAXUu\n	2011-05-10 13:18:06.056349+07
+382982ca8054a4f4dd5bd40e97472bc5	NDUzNGZkYWRhNDI4MjQxMDcwNGExNjg3OTllMDY2YjU0YTViY2Y3YzqAAn1xAS4=\n	2011-05-10 15:09:03.063355+07
+\.
+
+
+--
+-- Data for Name: django_site; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY django_site (id, domain, name) FROM stdin;
+1	example.com	example.com
+2	localhost	localhost
+3	128.1.1.197	128.1.1.197
+4	127.0.0.1	127.0.0.1
+\.
+
+
+--
+-- Data for Name: main_category; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY main_category (id, name) FROM stdin;
+1	ชุดชงดื่มสุขภาพ
+2	ชุดขนมสุขภาพ
+3	ชุดมื้อสุขภาพ
+4	ชุดส่วนผสมเพื่อสุขภาพ
+5	สินค้าอุปโภค
+\.
+
+
+--
+-- Data for Name: main_code; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY main_code (id, symbol, product_id) FROM stdin;
+1	101	2
+2	102	2
+3	103	3
+4	201	4
+5	205	5
+6	301	6
+7	302	7
+8	401	8
+9	402	9
+10	a1	10
+11	a2	11
+12	a3	12
+13	a4	13
+14	a5	15
+15	tea1	16
+16	a6	14
+17	a7	17
+\.
+
+
+--
+-- Data for Name: main_producer; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY main_producer (id, name, description, image) FROM stdin;
+1	ซองเดอร์	ผลิตภัณฑ์ธัญพืช เกษตรอินทรีย์ ไร้สารพิษ คัดสรรเพื่อเติมเต็มสุขภาพ ในซองเดียว	images/logo.png
+2	ทรอปปิก้าไลฟ์ 	จำหน่ายสินค้า ปลีก-ส่ง วัตถุดิบธรรมชาติ เช่น น้ำมันหอมระเหย 100% คัดสรรจากทุกมุมโลก กลิ่นดี น้ำมันพื้นฐาน Base/Carrier Oil บัทเทอร์ ลูกประคบสมุนไพร ถุงอาบน้ำสมุนไพรสมุนไพรอบแห้ง และวัตถุดิบจากธรรมชาติอื่นๆ คุณภาพสูง ไม่มีสารตกค้างที่เป็นอันตรายใดๆ เพื่อนำไปเป็นส่วนผสมของผลิตภัณฑ์เพื่อสุขภาพ ผลิตภัณฑ์สปา และผลิตภัณฑ์ธรรมชาติต่างๆ 	images/logo2.png
+3	lemon farm	เป็นตลาดทางเลือกในการให้บริการ และกระตุ้นการผลิตอาหาร และผลิตภัณฑ์ ที่ปลอดภัยจากสารเคมีเป็นพิษ โดยเฉพาะเกษตรธรรมชาติ\r\nเพื่อสร้างสุขภาพผู้บริโภค และเกษตรกรผู้ผลิตก็มี ชีวิตที่ปลอดภัยและดีต่อสิ่งแวดล้อม	images/logo3.png
+\.
+
+
+--
+-- Data for Name: main_product; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY main_product (id, name, description, image, category_id, standard_id, producer_id) FROM stdin;
+1	เครื่องดื่มธัญญาหารสำเร็จรูป ผสมงาดำหวานน้อย (แพ็ค)	เต็มด้วยคุณค่าจากธัญพืชไร้สารพิษกว่า 8 ชนิด เช่น ลูกเดือย,เม็ดบัว,ถั่วเขียว,ถั่วเหลือง,ข้าวกล้อง,ข้าวฟ่าง ข้าวหอมนิล,ข้าวโพด,และงาดำซึ่งให้แคลเซียมสูง เหมาะกับผู้ดูแลสุขภาพอิ่มพอดี หวานน้อยจากน้ำตาล ไม่ฟอกสี\r\n\r\nน้ำหนัก/หน่วย\r\n25g x 5 ซอง\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n\r\n    * ธัญญาหารไร้สารพิษ 5.4 %\r\n    * งาดำไร้สารพิษ 3.5 %\r\n    * ครีมเทียมธรรมจากชาติ 2.8 %\r\n    * น้ำตาลไม่ฟอกสี 2.4%\r\n\r\n	images/pd1.png	1	1	1
+2	เครื่องดื่มธัญญาหารสำเร็จรูป ผสมงาดำ รสจืด (แพ็ค)	เต็มด้วยคุณค่าจากธัญพืชไร้สารพิษกว่า 8 ชนิด เช่น ลูกเดือย,เม็ดบัว,ถั่วเขียว,ถั่วเหลือง,ข้าวกล้อง,ข้าวฟ่าง ข้าวหอมนิล,ข้าวโพด,และงาดำซึ่งให้แคลเซียมสูง เหมาะกับผู้ดูแลสุขภาพอิ่มพอดี พิเศษ! ไม่มีน้ำตาล เหมาะสำหรับผู้ป่วยเบาหวาน หรือผู้ที่ควบคุมน้ำหนัก\r\n\r\nน้ำหนัก/หน่วย\r\n25g x 5 ซอง\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n\r\n    *  ธัญญาหารไร้สารพิษ 5.4%\r\n    * งาดำไร้สารพิษ 3.5 %\r\n    * ครีมเทียมจากธรรมชาติ 2.8%\r\n\r\n	images/pd2.png	1	1	1
+3	เครื่องดื่มธัญญาหารสำเร็จรูป รสโกโก้ (แพ็ค)	เต็มด้วยคุณค่าจากธัญพืชไร้สารพิษกว่า 8 ชนิด เช่นลูกเดือย,เม็ดบัว,ถั่วเขียว,ถั่วเหลือง,ข้าวกล้อง,ข้าวฟ่าง\r\n,ข้าวหอมนิล,ข้าวโพด เหมาะกับผู้ดูแลสุขภาพอิ่มพอดี หวานน้อยจากน้ำตาลไม่ฟอกสี\r\n\r\nน้ำหนัก/หน่วย\r\n30g x 5 ซอง\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n\r\n    * ธัญญาหารไร้สารพิษ 7.4 %\r\n    * น้ำตาลไม่ฟอกสี 4.3%\r\n    * ครีมเทียมจากธรรมชาติ 3.6 %\r\n    * โกโก้ 0.4%\r\n\r\n	images/pd3.png	1	1	1
+5	เกรนนี่ ธัญพืชแท่งผสมผลไม้รวม 15 ชนิด (แพ็ค)	คัดสรรธัญพืชไทยไร้สารพิษนำมาผสมกับผลไม้ชั้นยอดของไทย ได้ธัญพืชแท่งรสอร่อย กรอบ หวานน้อยจากน้ำตาลไม่ฟอกสี สามารถทานเป็นอาหารเช้า/มื้ออาหาร ในเวลาเร่งรีบ หรือผู้ต้องการควบคุมน้ำหนัก\r\n\r\nน้ำหนัก/หน่วย\r\n16g x 5 แท่ง\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n*เกล็ดธัญพืช\r\n*ข้าวกล้อง 12%\r\n*ถั่วเขียว 6%\r\n*ถั่วเหลือง 6%\r\n*ลูกเดือย 4%\r\n*ข้าวฟ่าง 3%\r\n*ข้าวโพด 3%\r\n*ลูกบัว 2%\r\n*ต้นอ่อนข้าวอ่อน 15%\r\n*ข้าวกล้องแดง 10%\r\n*เม็ดมะม่วงหิมพานต์ 7%\r\n*น้ำตาล 5%\r\n*เม็ดฟักทอง 5%\r\n*ข้าวหอมนิล 3%\r\n*กล้วยน้ำว้าอบแห้ง 3%\r\n*งาขาว 13%\r\n*ลูกเกด 3%	images/pd5.png	2	1	1
+4	เกรนน่า งาแท่งผสมธัญพืช 7 ชนิด (แพ็ค)	เมล็ดงาดำไร้สารพิษอุดมด้วยแคลเซียมสูง เพิ่มคุณค่าด้วยเกล็ดธัญพืช 7 ชนิดนำมาปรุงเป็น งาแท่ง กรอบหวานน้อยจากน้ำตาลไม่ฟอกสี\r\n\r\nน้ำหนัก/หน่วย\r\n16g x 5 แท่ง\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n*งาดำไร้สารพิษ 65%\r\n*เกล็ดธัญพืชไร้สารพิษ 18%\r\n*น้ำตาลอ้อย 12%\r\n*ข้าวต้นอ่อน 12%	images/pd4.png	2	1	1
+6	โจ๊กข้าวกล้องหอมมะลิแดง ผสมสาหร่าย (แพ็ค)	ผลิตจากข้าวหอมมะลิแดงไม่ขัดสีไร้สารพิษพันธุ์พื้นเมืองของไทยที่ยังมีจมูกข้าว เยื่อหุ้มเมล็ดข้าวที่เป็นแหล่งของวิตมินบี 1, อี, แคลเซี่ยมและใยอาหารจากธรรมชาติผ่านกระบวนการทำให้สุกและอบแห้งด้วยเครื่องจักรอันทันสมัยตามมาตรฐานสากล พิเศษ! ผสมสาหร่ายและผักเพื่อเพิ่มโปรตีน และคลอโรฟิลด์ จากธรรมชาติ เพียงเติมน้ำร้อนสามารถอิ่มอร่อยกับโจ๊กซองเดอร์ได้ทันที\r\n\r\nน้ำหนัก/หน่วย\r\n35g x 1 แพ็ค\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n*ข้าวกล้องหอมมะลิแดง 80%\r\n*ถั่วเหลือง 9%\r\n*สาหร่ายทะเล 4%\r\n*เกลือ 4%\r\n*น้ำตาล 2%\r\n*ผัก 1%	images/pd301.png	3	1	1
+7	โจ๊กข้าวกล้องหอมมะลิแดง ผสมผัก (แพ็ค)	ผลิตจากข้าวหอมมะลิแดงไม่ขัดสีไร้สารพิษพันธุ์พื้นเมืองของไทยที่ยังมีจมูกข้าว เยื่อหุ้มเมล็ดข้าวที่เป็นแหล่งของวิตมินบี 1, อี, แคลเซี่ยมและใยอาหารจากธรรมชาติผ่านกระบวนการทำให้สุกและอบแห้งด้วยเครื่องจักรอันทันสมัยตามมาตรฐานสากล\r\n\r\nน้ำหนัก/หน่วย\r\n35g x 1 แพ็ค\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n*ข้าวกล้องหอมมะลิแดง 80%\r\n*ถั่วเหลือง 9%\r\n*เกลือ 4%\r\n*น้ำตาล 2%\r\n*ผัก 5%	images/pd302.png	3	1	1
+8	งาดำเม็ดไร้สารพิษ 100 กรัม (แพ็ค)	อุดมด้วยแคลเซียม, วิตามินอี และสารอาหารต่างๆ ใช้สำหรับปรุงกับข้าว, ผสมเครื่องดื่มต่างๆ ทานกับข้าว, หรือขนมอื่นๆ\r\n\r\nน้ำหนัก/หน่วย\r\n100g x 1 แพ็ค\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n*งาดำคั่ว 100%	images/pd401.png	4	2	1
+9	งาดำบดไร้สารพิษ 100 กรัม (แพ็ค)	อุดมด้วยแคลเซียม, วิตามินอี และสารอาหารต่างๆ ใช้สำหรับปรุงกับข้าว, ผสมเครื่องดื่มต่างๆ ทานกับข้าว, หรือขนมอื่นๆ\r\n\r\nน้ำหนัก/หน่วย\r\n100g x 1 แพ็ค\r\n\r\nส่วนประกอบเมื่อละลายน้ำแล้ว\r\n*งาดำคั่ว 100%	images/pd402.png	4	1	1
+10	ลูกประคบมะพร้าว	100 กรัม/ชิ้น (บรรจุ 2ชิ้นในซองฟอยล์) \t	images/a1.png	5	1	2
+11	ลูกประคบมาตรฐานโบราณ	200 กรัม/ชิ้น (บรรจุ 2 ชิ้นในซองฟอยล์)\r\n\r\nใช้ประคบเพื่อลดอาการกล้ามเนื้อเกร็ง ปวดหลัง ปวดตามกล้ามเนื้อ ลดอาการปวดบวมอักเสบต่างๆ ทำให้เนื้อเยื่อพังผืดยืดตัวออก บรรเทาอาการปวดลงได้ ช่วยให้การไหลเวียนโลหิตดีขึ้น บรรเทาอาการเหน็บชา จิตใจเบาสบาย\r\n\r\nส่วนประกอบ ประกอบด้วย ไพล ขมิ้น ข่า ชุมเห็ดเทศ ตะไคร้หอม ว่านนางคำ ใบมะขาม ใบส้มป่อย ใบแจง ใบพลับพลึง ใบเตย พิมเสน การบูร\r\n\r\nวิธีใช้ พรมน้ำให้ลูกประคบเปียกหมาดๆ นำไปนึ่งไอน้ำ จนน้ำมันมีสีเหลืองออกมา แล้วนำไปประคบตามต้องการ\r\n\r\nการเก็บรักษา หลังจากนำไปนึ่งแล้วปกติจะใช้ได้ 3-5 วัน เวลาเก็บควรผึ่งตัวยาไว้ อย่าให้อับ หากเก็บในตู้เย็นจะใช้ได้นานขี้น เมื่อยาบูดควรทิ้ง	images/a2.png	5	1	2
+12	ลูกประคบงาดำ	100 กรัม/ชิ้น (บรรจุ 2ชิ้นในซองฟอยล์)\r\n\r\nก่อนใช้ให้นำไปอบในเตาก่อน เช่น เตาไมโครเวฟ เพื่อให้เกิดความร้อนทำให้น้ำมันงาออกมาจากเมล็ดงา พร้อมที่จะใช้ประคบ ส่วนประกอบของลูกประคบงาดำ งาดำ Sesame, Sesamum indicum Linn ช่วยบำรุงผิว บรรเทาอาการเมื่อยล้า ขัดผิวหมองคล้ำ ขจัดคราบไคล ให้เกลี้ยงเกลาไม่ระคายเคือง ช่วยให้ผู้ที่มีผิวแห้งหยาบกร้านกลับชุ่มชื้นมีน้ำมีนวล นอกจากนี้ยังใช้ทำน้ำมันระเหยยาก โดยบีบจากเมล็ด หุงเป็นมันมันใส่บาดแผล ถูทาแก้เคล็ดขัดยอก พบว่างามีสาร beta-sitosterol ซึ่งมีฤทธิ์ลดการอักเสบได้ ข้าวกล้อง(Cargo rice, Loozain rice, Brown rice, Husked rice) ข้าวกล้อง มีวิตามิน E B สูงช่วยบำรุงผิวพรรณ สำหรับสุภาพสตรีที่หลังคลอดบุตร สามารถนำมาประคบบริเวณคัดเจ็บ บริเวณหัวนม จะช่วยบรรเทาอาการและบำรุงผิวเต้านมได้เป็นอย่างดี เกลือสะตุทำหน้าที่เก็บรักษาความร้อนของสมุนไพรในลูกประคบ เพื่อให้เกิดประสิทธิภาพสูงสุด พร้อมทั้งช่วยฆ่าเชื้อโรค และบำรุงผิวพรรณ	images/a3.png	5	1	2
+13	ถุงแช่อาบน้ำ	ขนาด 100 กรัม/ชิ้น (บรรจุ 2 ชิ้นในซองฟอยล์)\r\n\r\nช่วยเพิ่มการไหลเวียนของโลหิต ขับถ่ายของเสียออกทางผิวหนัง ลดน้ำหนัก ละลายไขมันส่วนเกิน ฟื้นฟูสภาพสตรีหลัลคลอดบุตร ขับน้ำคาวปลา ช่วยปรับสภาพผิว บำรุงผิวพรรณ ช่วยกระจายเลือดกระจายลมในร่างกาย ทำให้ทางเดินหายใจสดชื่น ร่างการแข็งแรง มีภูมิต้านทานโรค\r\n\r\nส่วนประกอบ ไพล ตะไคร้หอม ผิวมะกรูด ใบมะกรูด ใบมะขาม ใบส้มเสี้ยว ใบส้มป่อย ใบแจง เปลือกส้มโอ ว่านนางคำ ว่านน้ำ พิมเสน การะบูร\r\n\r\nวิธีใช้ ใช้สมุนไพร 1 ถุงผสมน้ำ 1-2 ลิตร แล้วใช้อบตัวด้วยตู้อบ กระโจม สำหรับต้มน้ำอาบ ให้ใส่ถุงลงไปในอ่าง แช่ตัว หรือใช้แทนลูกประคบหลังอบตัวเสร็จ ข้อห้าม –\r\nไม่ควรใช้กับผู้ป่วยโรคหัวใจ ความดันโลหิตสูง หอบหืด อดนอน อ่อนเพลีย กินอาหารอิ่มใหม่ๆ	images/a4.png	5	1	2
+14	น้ำมันงาดำบริสุทธิ์  (Black Sesame Oil)	น้ำมันงาบริสุทธิ์ 100 % สกัดโดยวิธีที่ไม่ผ่านความร้อน (Cold Press) รักษาคุณภาพเอาไว้อย่างเต็มเปี่ยม อุดมด้วยคุณค่าวิตามินอีจากธรรมชาติ\r\nช่วยบำรุงผิวพรรณ และบำรุงเส้นผม	images/l1.png	5	2	3
+15	น้ำมันมะพร้าวบริสุทธิ์ (Virgin Coconut Oil)	น้ำมันมะพร้าวบริสุทธิ์ 100 % ผลิตด้วยกระบวนการตามธรรมชาติ สกัดเย็น (Cold Press)ไม่ฟอกสี ไม่แต่งกลิ่น มีประโยชน์ด้านคงความอ่อนเยาว์\r\nของผิวหนัง บำรุงหนังศีรษะและเส้นผมให้นุ่มเป็นเงางาม	images/l2.png	5	1	3
+16	ชาใบเตย	เตยมีคลอโรฟีลล์มาก ชาใบเตย ช่วยบำรุงหัวใจ ทำให้ชุ่มชื่นและช่วยขับปัสสาวะ แก้ดับร้อน\r\n\r\nขนาดบรรจุ: ขนาด 100 g , 500 g , 1 kg	images/t1.png	1	1	2
+17	น้ำมันมะพร้าวออแกนิก	ชื่อวิทยาศาสตร์: Cocos nucifera\r\n\r\nต้นกำเนิด : ประเทศไทย\r\n\r\nน้ำมันมะพร้าวเป็นน้ำมันมันที่มีคุณค่าโดยเฉพาะโปรตีนและไขมันสูง ซึ่งสกัดมาจากเนื้อมะพร้าวโดยวิธีธรรมชาติ ไม่ใช้ความร้อนสูง ไม่ใช้สารเคมีในการสกัด นิยมนำมาใช้ทาผิวพรรณเพื่อป้องกันผิวจากแสงแดด ช่วยให้ความชุ่มชื่นแก่ผิวหนังบำรุงผิวหนังให้เต่งตึง มีน้ำมีนวลไม่เหี่ยวย่น หรือใช้นวดตัวจะช่วยปรับสภาพผิวหนังกระตุ้นการทำงานของระบบหมุนเวียนโลหิต และระบบประสาท ใช้หมักผมหรือทาผมทำให้เส้นผมดกดำเป็นเงางาม ป้องกันปากแห้งหรือใช้แทนลิปมัน ช่วยบำรุงริมฝีปากให้ชุ่มชื่น และยังใช้รักษาโรคต่างๆ เช่นใส่แผลเปื่อย แผลไฟไหม้ น้ำร้อนลวกช่วยลดอาการพุพอง\r\n\r\nสามารถใช้เป็นส่วนผสมของน้ำมันพื้นฐานได้ถึง 100% ใช้ได้กับทุกสภาพผิว \r\n\r\nขนาดบรรจุ : ขนาด  1 ลิตร , 250 ml , 500 ml	images/a5.png	5	1	2
+\.
+
+
+--
+-- Data for Name: main_standard; Type: TABLE DATA; Schema: public; Owner: green
+--
+
+COPY main_standard (id, name) FROM stdin;
+1	มาตรฐาน 1
+2	มาตรฐาน 2
+3	มาตรฐาน 3
+\.
+
+
+--
+-- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions_group_id_key; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_key UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_message_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_message
+    ADD CONSTRAINT auth_message_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission_content_type_id_key; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_key UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups_user_id_key; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_key UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_key; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_key UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type_app_label_key; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_app_label_key UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: django_site_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY django_site
+    ADD CONSTRAINT django_site_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: main_category_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY main_category
+    ADD CONSTRAINT main_category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: main_code_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY main_code
+    ADD CONSTRAINT main_code_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: main_producer_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY main_producer
+    ADD CONSTRAINT main_producer_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: main_product_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY main_product
+    ADD CONSTRAINT main_product_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: main_standard_pkey; Type: CONSTRAINT; Schema: public; Owner: green; Tablespace: 
+--
+
+ALTER TABLE ONLY main_standard
+    ADD CONSTRAINT main_standard_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_permissions_group_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX auth_group_permissions_group_id ON auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX auth_group_permissions_permission_id ON auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_message_user_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX auth_message_user_id ON auth_message USING btree (user_id);
+
+
+--
+-- Name: auth_permission_content_type_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX auth_permission_content_type_id ON auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX auth_user_groups_group_id ON auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX auth_user_groups_user_id ON auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id ON auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX auth_user_user_permissions_user_id ON auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: django_admin_log_content_type_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX django_admin_log_content_type_id ON django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX django_admin_log_user_id ON django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX django_session_expire_date ON django_session USING btree (expire_date);
+
+
+--
+-- Name: main_code_product_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX main_code_product_id ON main_code USING btree (product_id);
+
+
+--
+-- Name: main_product_category_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX main_product_category_id ON main_product USING btree (category_id);
+
+
+--
+-- Name: main_product_producer_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX main_product_producer_id ON main_product USING btree (producer_id);
+
+
+--
+-- Name: main_product_standard_id; Type: INDEX; Schema: public; Owner: green; Tablespace: 
+--
+
+CREATE INDEX main_product_standard_id ON main_product USING btree (standard_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_permission_id_fkey FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_message_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY auth_message
+    ADD CONSTRAINT auth_message_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_fkey FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_permission_id_fkey FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: content_type_id_refs_id_728de91f; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT content_type_id_refs_id_728de91f FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log_content_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_fkey FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: group_id_refs_id_3cea63fe; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT group_id_refs_id_3cea63fe FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: main_code_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY main_code
+    ADD CONSTRAINT main_code_product_id_fkey FOREIGN KEY (product_id) REFERENCES main_product(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: main_product_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY main_product
+    ADD CONSTRAINT main_product_category_id_fkey FOREIGN KEY (category_id) REFERENCES main_category(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: main_product_producer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY main_product
+    ADD CONSTRAINT main_product_producer_id_fkey FOREIGN KEY (producer_id) REFERENCES main_producer(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: main_product_standard_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY main_product
+    ADD CONSTRAINT main_product_standard_id_fkey FOREIGN KEY (standard_id) REFERENCES main_standard(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_id_refs_id_7ceef80f; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT user_id_refs_id_7ceef80f FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_id_refs_id_dfbab7d; Type: FK CONSTRAINT; Schema: public; Owner: green
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT user_id_refs_id_dfbab7d FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

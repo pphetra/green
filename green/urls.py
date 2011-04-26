@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     # (r'^green/', include('green.foo.urls')),
     (r'^product$', product_get),
     (r'^manifest\.cache$', manifest),
+
+    (r'^sync/$', 'main.views.sync'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
@@ -23,6 +25,8 @@ urlpatterns += patterns('green.main.views',
 )
 
 if settings.DEBUG:
-	urlpatterns = patterns('',
-		(r'^' + settings.MEDIA_URL.lstrip('/'), include('appmedia.urls'))
-	) + urlpatterns
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+   )

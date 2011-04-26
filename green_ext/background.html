@@ -5,37 +5,32 @@
 function errorHandler() {
 	console.log('fail', arguments);
 }
-function init() {
-	window.requestFileSystem( PERSISTENT, 5242880 /* ~5MB */, function(fs){
-    						
-			    fsys = fs;
-			    root = fsys.root;
-	}, errorHandler);
+db = openDatabase("green", '1.0', 'image database', 15 * 1024 * 1024);
+db.transaction(function(tx) {
+	tx.executeSql('create table if not exists img(name varchar(25) not null primary key asc, content text)', []);
+});
 
-	db = openDatabase("green", '1.0', 'image database', 15 * 1024 * 1024);
-	db.transaction(function(tx) {
-		tx.executeSql('create table if not exists img(name varchar(25) not null primary key asc, content text)', []);
-	});
-}
-function loadImg(name, src, tab) {
+function loadImg(name, src, cb) {
+	console.log('loadImg', name, src, cb);
 	var img = new Image();
 	img.onload = function() {
             var canvas = document.getElementById('canvas');
             var context = canvas.getContext('2d');
+            clearCanvas(context, canvas);
             context.drawImage(img, 0, 0);
             var data = canvas.toDataURL();
-
-            chrome.extension.getExtensionTabs()[0].app.loadImage(data);
 
 			// write(name, data) // write to file
 			writeDB(name, data);
 
+			cb();
     };
     img.src = src;
 }
 function writeDB(name, data) {
 	db.transaction(function(tx) {
-		tx.executeSql('insert into img values (?,?)', [name, data]);
+		console.log(name, data);
+		tx.executeSql('insert or replace into img values (?,?)', [name, data]);
 	});
 }
 
@@ -49,35 +44,11 @@ function readDB(name, callback) {
 	})
 }
 
-function write(name, data) {
-	root.getFile(name, {create: true}, function(fileEntry) {
-		fileEntry.createWriter(function(fileWriter) {
-			fileWriter.onwriteend = function(e) {
-				console.log('write success');
-			}
-			fileWriter.onerror = function(e) {
-				console.log('write error');
-			}
-			var bb = new WebKitBlobBuilder();
-			bb.append(data);
-			window.pok = bb;
-			fileWriter.write(bb.getBlob('text/plain'));
-		}, errorHandler)
-
-	}, errorHandler)	
-}
-function read(name, callback) {
-	fsys.root.getFile(name, {}, function(fe) {
-		fe.file(function(file) {
-			var reader = new FileReader();
-			reader.onloadend = function(e) {
-				 console.log('load end');
-				 console.log(this.result);
-				 callback(this.result);
- 	        };
- 	        reader.readAsDataURL(file);
-		}, errorHandler)
-	}, errorHandler);
+function clearCanvas(context, canvas) {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  var w = canvas.width;
+  canvas.width = 1;
+  canvas.width = w;
 }
 </script>
 </head>

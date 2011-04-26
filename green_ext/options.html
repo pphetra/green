@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Catalog Options</title>
+     <!-- Ext Touch CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="/sencha/resources/css/sencha-touch.css"/>
+
+     <!-- Ext Touch JS -->
+    <script type="text/javascript"
+        src="/sencha/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript"
+        src="/SqliteProxy.js"></script>
+
+    <script type="text/javascript"
+        src="/models.js"></script>
+
+	<script type="text/javascript"
+        src="/sync.js"></script>
+    
+
+    <script>
+new Ext.Application({
+    name: 'option',
+    launch: function() {
+    	option.viewport = new Ext.Panel({
+    		fullscreen: true,
+    		layout: {
+				type: 'vbox',
+				align: 'center',
+				pack: 'center'
+			},
+    		items: [
+    			{
+    				xtype: 'button',
+    				ui: 'confirm-round',
+    				text: 'Sync Data',
+    				width: '200',
+    				handler: function() {
+    					sync();
+    				}
+    			}
+    		]
+    	})
+    }
+});
+    </script>
+</head>
+<body>
+</body>
+</html>

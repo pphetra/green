@@ -9,8 +9,10 @@
 	},
 	"background_page": "background.html",
 	"icons": {
-		"16": "icon.png"
+		"16": "icon.png",
+		"128": "icon.png"
 	},
+	"options_page": "options.html",
 	"permissions": [
 		"http://*/*",
 		"unlimitedStorage",

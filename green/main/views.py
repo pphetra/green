@@ -7,7 +7,7 @@ import simplejson as json
 import os
 import settings
 
-from main.models import Code,Product
+from main.models import Code, Product, Category
 
 def render(request, *args, **kwargs):
     context = RequestContext(request, {})
@@ -49,3 +49,29 @@ def manifest(request):
 		'files': os.listdir(settings.MEDIA_ROOT + '/images')
 	}
 	return render(request, 'manifest', context, mimetype="text/cache-manifest")
+
+def sync(request):
+	cats = Category.objects.all()
+	prods = Product.objects.all()
+	results = {
+		'success': True,
+		'categories': [],
+		'products': []
+	}
+	for cat in cats:
+		results['categories'].append({
+			'id': cat.id,
+			'name': cat.name
+		})
+
+	for prod in prods:
+		results['products'].append({
+			'id': prod.id,
+			'name': prod.name,
+			'description': prod.description,
+			'imagePath': prod.image.url,
+			'categoryId': prod.category.id
+		})
+
+	response = HttpResponse(json.dumps(results), content_type="application/json")
+	return response
