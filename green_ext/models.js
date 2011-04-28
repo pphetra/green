@@ -11,7 +11,7 @@ Ext.regModel('Category', {
 });
 
 Ext.regModel('Product', {
-	fields: ['id', 'name', 'description', 'imagePath', 'categoryId'],
+	fields: ['id', 'name', 'description', 'imagePath', 'categoryId', 'producerId', 'producerName', 'standardId', 'standardName'],
 	proxy: {
 		type: 'sqlitestorage',
 		db: database.db,
@@ -29,12 +29,4 @@ productStore = new Ext.data.Store({
 	model: 'Product',
 	sorters: 'name',
 	autoLoad: true,
-	// data: [
-	// 	{id: 1, name: 'Rice 1', description: 'desc 1', categoryId: 1},
-	// 	{id: 2, name: 'Rice 2', description: 'desc 2', categoryId: 1},
-	// 	{id: 3, name: 'Rice 3', description: 'desc 3', categoryId: 1},
-	// 	{id: 4, name: 'Drink 1', description: 'desc 1', categoryId: 2},
-	// 	{id: 5, name: 'Drink 2', description: 'desc 2', categoryId: 2},
-	// 	{id: 6, name: 'Meat 1', description: 'desc 1', categoryId: 3},
-	// ]
 })

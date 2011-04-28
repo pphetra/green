@@ -1,6 +1,7 @@
 ProductView = Ext.extend(Ext.form.FormPanel, {
 	initComponent: function() {
 		Ext.apply(this, {
+			scroll: 'vertical',
 			dockedItems: [
 				{
 					dock : 'top',
@@ -24,11 +25,13 @@ ProductView = Ext.extend(Ext.form.FormPanel, {
         			itemTpl: '<div class="category">{name}</div>',
         			listeners: {
         				'selectionchange': function(selModel, records) {
-        					Ext.dispatch({
-					            controller: app.controllers.product,
-					            action: 'show',
-					            record: records[0]
-					        });		
+        					if (records.length > 0) {
+	        					Ext.dispatch({
+						            controller: app.controllers.product,
+						            action: 'show',
+						            record: records[0]
+						        });		
+        					}
         				}
         			},
         			onItemDiscloxsure: function(record) {
@@ -48,6 +51,17 @@ ProductView = Ext.extend(Ext.form.FormPanel, {
 					maxRows: 20
 				},
 				{
+					xtype: 'displayfield',
+					name: 'producerName',
+					label: 'Company'
+				},
+				{
+					xtype: 'displayfield',
+					name: 'standardName',
+					label: 'Standard'
+				},
+
+				{
 					xtype: 'imagefield',
 					itemId: 'imageField',
 					height: 400
@@ -56,6 +70,13 @@ ProductView = Ext.extend(Ext.form.FormPanel, {
 		});
 
 		ProductView.superclass.initComponent.apply(this, arguments);
+	},
+
+	reset: function() {
+		// clear image field
+		pok = this;
+		this.down('#imageField').reset();
+		ProductView.superclass.reset.apply(this, arguments);
 	}
 });
 

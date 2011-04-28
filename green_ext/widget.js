@@ -78,22 +78,19 @@ app.views.ImageField = Ext.extend(Ext.Panel, {
         this.data = {
             name: 'image'
         };
-        console.log("new imagefield");
+
         Ext.apply(this, {
             tpl: [
                 '<div style="text-align:center; width: 100%; background-color: white; height: 100%;">',
-                    '<image class="product-image show-image" src="" title="{name} style="width: 100%; height: 100%;"></img>',
+                    '<image class="product-image show-image" src="/no-photo.jpg" title="{name} style="width: 100%; height: 100%;"></img>',
                 '</div>'
             ],
             listeners: {
                 'afterrender': {
                     fn: function(c) {
-                        console.log('after render', c, c.el.query('img.product-image'));
                         var me = this;
                         Ext.each(c.el.query('img.product-image'), function(item) {
-                            console.log(item);
                             self.bucket = item;
-                            console.log(self.bucket);
                         });
                     },
                     scope: this
@@ -102,8 +99,11 @@ app.views.ImageField = Ext.extend(Ext.Panel, {
         });
         app.views.ImageField.superclass.initComponent.apply(this, arguments);
     },
+    reset: function() {
+        this.bucket.src = '/no-photo.jpg';
+    },
     loadImage: function(path) {
-        console.log(path);
+
         var self = this;
         var bg =  chrome.extension.getBackgroundPage();
         bg.readDB(path, function(content) {

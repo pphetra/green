@@ -70,7 +70,11 @@ def sync(request):
 			'name': prod.name,
 			'description': prod.description,
 			'imagePath': prod.image.url,
-			'categoryId': prod.category.id
+			'categoryId': prod.category.id,
+			'producerId': prod.producer.id,
+			'producerName': prod.producer.name,
+			'standardId': prod.standard.id,
+			'standardName': prod.standard.name
 		})
 
 	response = HttpResponse(json.dumps(results), content_type="application/json")

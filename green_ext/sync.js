@@ -1,6 +1,10 @@
 database.db.transaction(function(tx) {
 	//tx.executeSql('create table if not exists category(id integer primary key asc, name varchar(200))', []);
-	tx.executeSql('create table if not exists product(id integer primary key asc, name varchar(200), imagePath varchar(300), description text, categoryId integer)', []);
+	tx.executeSql('create table if not exists product' +
+		'(id integer primary key asc, name varchar(200), ' +
+		'imagePath varchar(300), description text, ' +
+		'categoryId integer, producerId integer, producerName varchar(200), ' +
+		'standardId integer, standardName varchar(200))', []);
 })
 
 function sync() {
@@ -19,14 +23,11 @@ function sync() {
 
 			var total = obj.products.length;
 			var cnt = 0;
-			console.log('--------');
 			var bg =  chrome.extension.getBackgroundPage();
-			console.log(bg);
 			Ext.each(obj.products, function(item) {
 				productStore.add(item);
 				bg.loadImg(item.imagePath, 'http://localhost:8000' + item.imagePath, function() {
 					cnt++;
-					console.log(cnt, total);
 				})
 			})
 			productStore.sync();
