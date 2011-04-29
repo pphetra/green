@@ -1,9 +1,9 @@
 <html>
 <head>
-  <title>Hi</title>
+  <title>Green Fair</title>
      <!-- Ext Touch CSS -->
     <link rel="stylesheet" type="text/css"
-        href="/sencha/resources/css/sencha-touch.css"/>
+        href="/sencha/resources/css/greenfair.css"/>
 
      <!-- Ext Touch JS -->
     <script type="text/javascript"
@@ -103,6 +103,37 @@ new Ext.Application({
         app.viewport = new Ext.Panel({
             fullscreen: true,
             layout: 'card',
+            dockedItems: [
+                {
+                    dock: 'bottom',
+                    ui: 'dark',
+                    xtype: 'toolbar',
+
+                    items: [
+                        {
+                            xtype: 'spacer'
+                        },
+                        {
+                            xtype: 'segmentedbutton',
+                            items: [
+                                {
+                                    text: 'Product',
+                                    pressed: true
+                                },
+                                {
+                                    text: 'Vendor'
+                                },
+                                {
+                                    text: 'Standard'
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'spacer'
+                        }
+                    ]
+                }
+            ],
             items: [
                 {
                     xtype: 'categoryView'

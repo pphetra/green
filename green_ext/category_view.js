@@ -6,6 +6,19 @@ CategoryView = Ext.extend(Ext.Panel, {
 				align: 'center',
 				pack: 'center'
 			},
+			dockedItems: [
+                {
+                    dock: 'top',
+                    xtype: 'toolbar',
+                    title: 'Green Fair',
+                    items: [
+                        {
+                            xtype : 'searchfield',
+                            name  : 'query'
+                        }
+                    ]
+                }
+            ],
 			items: [{
 				xtype: 'list',
 				height: 500,
