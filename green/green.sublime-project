@@ -4,8 +4,16 @@
 		"selected_items":
 		[
 			[
+				"st",
+				"standard"
+			],
+			[
 				"fu",
 				"function"
+			],
+			[
+				"Pro",
+				"ProductView"
 			],
 			[
 				"tr",
@@ -56,26 +64,34 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/pphetra/projects/opendream/green_ext/background.html",
+			"file": "/Users/pphetra/projects/green/green_ext/models.js",
 			"settings":
 			{
-				"buffer_size": 2176,
+				"buffer_size": 640,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/pphetra/projects/opendream/green_ext/main.html",
+			"file": "/Users/pphetra/projects/green/green/main/views.py",
 			"settings":
 			{
-				"buffer_size": 3994,
+				"buffer_size": 2221,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/pphetra/projects/opendream/green_ext/manifest.json",
+			"file": "/Users/pphetra/projects/green/green_ext/sencha/resources/sass/config.rb",
 			"settings":
 			{
-				"buffer_size": 309,
+				"buffer_size": 315,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/pphetra/projects/green/green/main/models.py",
+			"settings":
+			{
+				"buffer_size": 998,
 				"line_ending": "Unix"
 			}
 		}
@@ -83,12 +99,22 @@
 	"build_system": "",
 	"file_history":
 	[
+		"/Users/pphetra/projects/green/green_ext/sync.js",
+		"/Users/pphetra/projects/green/green_ext/background.html",
+		"/Users/pphetra/projects/green/green_ext/widget.js",
+		"/Users/pphetra/projects/green/green_ext/main.html",
+		"/Users/pphetra/projects/green/green_ext/product_view.js",
+		"/Users/pphetra/projects/green/green_ext/sencha/resources/themes/images/default/pictos/briefcase1.png",
+		"/Users/pphetra/projects/opendream/green/main/models.py",
+		"/Users/pphetra/projects/green/green_ext/SqliteProxy.js",
+		"/Users/pphetra/projects/opendream/green_ext/manifest.json",
+		"/Users/pphetra/projects/opendream/green_ext/background.html",
+		"/Users/pphetra/projects/opendream/green_ext/main.html",
 		"/Users/pphetra/projects/opendream/green_ext/pixastic.jquery.js",
 		"/Users/pphetra/projects/opendream/hercules/lion/client/server.py",
 		"/Users/pphetra/projects/opendream/green2/server.py",
 		"/Users/pphetra/projects/opendream/green2/static/index.html",
 		"/Users/pphetra/projects/opendream/green/settings.py",
-		"/Users/pphetra/projects/opendream/green/main/models.py",
 		"/Users/pphetra/projects/opendream/green/main/views.py",
 		"/Users/pphetra/projects/opendream/green/templates/manifest",
 		"/Users/pphetra/projects/opendream/green/templates/index.html",
@@ -98,8 +124,6 @@
 		"/Users/pphetra/projects/opendream/green/media/index.html",
 		"/Users/pphetra/projects/opendream/green/media/sencha/sencha-touch-debug-w-comments.js",
 		"/Users/pphetra/projects/opendream/green/main/admin.py",
-		"/Users/pphetra/projects/opendream/green_ext/manifest.json",
-		"/Users/pphetra/projects/opendream/green_ext/main.html",
 		"/Users/pphetra/projects/opendream/green/media/main.js",
 		"/Users/pphetra/projects/opendream/green_ext/icon.png",
 		"/Users/pphetra/projects/opendream/green/media/x.txt"
@@ -120,6 +144,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"console",
+			"reset",
 			"canvas",
 			"data",
 			"save",
@@ -154,37 +180,35 @@
 	{
 		"mount_points":
 		[
-			"/Users/pphetra/projects/opendream/green",
-			"/Users/pphetra/projects/opendream/green_ext",
-			"/Users/pphetra/projects/opendream/green2",
-			"/Users/pphetra/projects/opendream/hercules/lion/client"
+			"/Users/pphetra/projects/green"
 		]
 	},
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/pphetra/projects/opendream/green_ext/background.html",
+					"file": "/Users/pphetra/projects/green/green_ext/models.js",
 					"settings":
 					{
-						"buffer_size": 2176,
+						"buffer_size": 640,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								921,
-								472
+								508,
+								508
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0,
 						"translation.y": 0,
@@ -194,51 +218,82 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/Users/pphetra/projects/opendream/green_ext/main.html",
+					"file": "/Users/pphetra/projects/green/green/main/views.py",
 					"settings":
 					{
-						"buffer_size": 3994,
+						"buffer_size": 2221,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								829,
-								829
+								462,
+								462
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0,
-						"translation.y": 0,
+						"translation.y": 129,
 						"zoom_level": 1
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/Users/pphetra/projects/opendream/green_ext/manifest.json",
+					"file": "/Users/pphetra/projects/green/green_ext/sencha/resources/sass/config.rb",
 					"settings":
 					{
-						"buffer_size": 309,
+						"buffer_size": 315,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								309,
-								309
+								315,
+								315
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "/Users/pphetra/projects/green/green/main/models.py",
+					"settings":
+					{
+						"buffer_size": 998,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								825,
+								825
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0,
@@ -259,11 +314,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0,
+			0.5,
 			1
 		],
 		"rows":
@@ -279,6 +341,34 @@
 		"height": 0,
 		"selected_items":
 		[
+			[
+				"config.rb",
+				"green_ext/sencha/resources/sass/config.rb"
+			],
+			[
+				"standard.py",
+				"/Users/pphetra/projects/opendream/green/main/models.py"
+			],
+			[
+				"model.py",
+				"green/main/models.py"
+			],
+			[
+				"backgr",
+				"green_ext/background.html"
+			],
+			[
+				"widget",
+				"green_ext/widget.js"
+			],
+			[
+				"main.html",
+				"green_ext/main.html"
+			],
+			[
+				"pro",
+				"green_ext/product_view.js"
+			],
 			[
 				"view",
 				"green/main/views.py"
@@ -305,14 +395,14 @@
 		[
 			[
 				"",
-				"/Users/pphetra/Desktop/billing"
+				"/Users/pphetra/projects/mate projects/s-carpark"
 			]
 		],
 		"width": 380
 	},
 	"show_minimap": true,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 150,
 	"status_bar_visible": true
 }
